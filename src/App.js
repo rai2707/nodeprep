@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Container, Grid, Button, Typography, Paper } from "@mui/material";
+import {
+  Container,
+  Button,
+  Typography,
+  Paper,
+  Box,
+  Stack,
+} from "@mui/material";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import Dashboard from "./components/Dashboard";
@@ -11,38 +18,30 @@ const App = () => {
   if (!token) {
     return (
       <Container maxWidth="sm">
-        <Paper elevation={3} style={{ padding: "2rem", marginTop: "2rem" }}>
-          <Grid container spacing={2} justifyContent="center">
+        <Paper elevation={3} sx={{ padding: "2rem", marginTop: "2rem" }}>
+          <Stack spacing={2} alignItems="center">
             {view === "signin" ? (
               <>
-                <Grid item xs={12}>
-                  <SignIn setToken={setToken} />
-                </Grid>
-                <Grid item>
-                  <Typography variant="body2">
-                    Don't have an account?{" "}
-                    <Button color="primary" onClick={() => setView("signup")}>
-                      Sign Up
-                    </Button>
-                  </Typography>
-                </Grid>
+                <SignIn setToken={setToken} />
+                <Typography variant="body2">
+                  Don't have an account?{" "}
+                  <Button color="primary" onClick={() => setView("signup")}>
+                    Sign Up
+                  </Button>
+                </Typography>
               </>
             ) : (
               <>
-                <Grid item xs={12}>
-                  <SignUp />
-                </Grid>
-                <Grid item>
-                  <Typography variant="body2">
-                    Already have an account?{" "}
-                    <Button color="primary" onClick={() => setView("signin")}>
-                      Sign In
-                    </Button>
-                  </Typography>
-                </Grid>
+                <SignUp />
+                <Typography variant="body2">
+                  Already have an account?{" "}
+                  <Button color="primary" onClick={() => setView("signin")}>
+                    Sign In
+                  </Button>
+                </Typography>
               </>
             )}
-          </Grid>
+          </Stack>
         </Paper>
       </Container>
     );
