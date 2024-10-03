@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
   Container,
-  Grid,
+  Box,
   Card,
   CardContent,
   CardMedia,
   Typography,
-  Paper,
 } from "@mui/material";
 
 const Dashboard = ({ token }) => {
@@ -23,30 +22,39 @@ const Dashboard = ({ token }) => {
   }, []);
 
   return (
-    <Container maxWidth="lg" style={{ marginTop: "2rem" }}>
+    <Container maxWidth="lg" sx={{ marginTop: "2rem" }}>
       <Typography variant="h4" gutterBottom>
         Dashboard
       </Typography>
-      <Grid container spacing={3}>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(1, 1fr)",
+            sm: "repeat(2, 1fr)",
+            md: "repeat(3, 1fr)",
+            lg: "repeat(4, 1fr)",
+          },
+          gap: "2rem",
+        }}
+      >
         {items.map((item) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>
-            <Card>
-              <CardMedia
-                component="img"
-                height="200"
-                image={item.image}
-                alt={item.title}
-              />
-              <CardContent>
-                <Typography variant="h6">{item.title}</Typography>
-                <Typography variant="body2" color="textSecondary">
-                  ${item.price}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+          <Card key={item.id}>
+            <CardMedia
+              component="img"
+              height="200"
+              image={item.image}
+              alt={item.title}
+            />
+            <CardContent>
+              <Typography variant="h6">{item.title}</Typography>
+              <Typography variant="body2" color="textSecondary">
+                ${item.price}
+              </Typography>
+            </CardContent>
+          </Card>
         ))}
-      </Grid>
+      </Box>
     </Container>
   );
 };

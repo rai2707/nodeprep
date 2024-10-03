@@ -4,7 +4,6 @@ import {
   Button,
   Typography,
   Paper,
-  Box,
   Stack,
 } from "@mui/material";
 import SignUp from "./components/SignUp";
